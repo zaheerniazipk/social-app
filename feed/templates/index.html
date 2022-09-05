@@ -7,6 +7,14 @@
 <!-- Page Body -->
 {% block body %}
 
-<h2>Hello World!</h2>
+<!-- displaying multiple posts -->
+
+{% for post in posts %}
+
+{{post.text}} is written at {{post.date}}
+<hr>
+
+{% endfor %}
+
 
 {% endblock %}
