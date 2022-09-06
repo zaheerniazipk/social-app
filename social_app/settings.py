@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
     # newly created apps
     'feed',
+    'profiles',
 ]
 
 MIDDLEWARE = [
