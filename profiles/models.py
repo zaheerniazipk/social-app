@@ -5,6 +5,9 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+# sorl-thumbnail
+from sorl.thumbnail import ImageField
+
 
 # Create your models here.
 class Profile(models.Model):
@@ -13,6 +16,7 @@ class Profile(models.Model):
         on_delete=models.CASCADE,
         related_name='profile'
     )
+    image = models.ImageField(upload_to='profiles')
 
     # render username instead of objects
     def __str__(self):

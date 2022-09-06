@@ -41,10 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',     # enable multi-site
 
-    # django-allauth
+    # third party packages apps
+    # Django-allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    # sorl-thumbnail
+    'sorl.thumbnail',
 
     # newly created apps
     'feed',
