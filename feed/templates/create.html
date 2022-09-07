@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+<!-- Page Title -->
+{% block title %}Create New Post{% endblock %}
+
+<!-- Page Content -->
+{% block body %}
+
+<form action="" method="POST" enctype="multipart/form-data">
+    <!-- Cross Site Request Forgery  -->
+    {% csrf_token %}
+
+    <!-- Displaying Data in the Form -->
+    {{form.as_p}}
+
+</form>
+
+{% endblock %}
