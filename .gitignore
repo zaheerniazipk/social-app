@@ -129,6 +129,7 @@ dmypy.json
 .pyre/
 
 
-# vs code & media
+# vs code & media and static files
 .vscode/
 media/
+static/
