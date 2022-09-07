@@ -28,5 +28,5 @@ urlpatterns = [
     # include urls of feed app
     path('', include(feed_urls, namespace='feed')),
     # Django-allauth urls
-    path('accounts/', include('allauth.urls')),
+    path('', include('allauth.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
