@@ -1,8 +1,5 @@
 {% extends 'base.html' %}
 
-<!-- Template usage -->
-{% load thumbnail %}
-
 <!-- Page Title -->
 {% block title %}Home{% endblock %}
 
@@ -11,10 +8,8 @@
 
 <!-- displaying multiple posts -->
 {% for post in posts %}
-
 <!-- include file -->
 {% include 'includes/post.html' with post=post show_detail_link=True %}
-
 {% endfor %}
 
 {% endblock %}

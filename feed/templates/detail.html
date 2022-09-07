@@ -1,15 +1,10 @@
 {% extends 'base.html' %}
 
-<!-- Template usage -->
-{% load thumbnail %}
-
 <!-- Page Title -->
 {% block title %} {{post.text}} by {{post.author.username}} {% endblock %}
 
 <!-- Page Body -->
 {% block body %}
-
 <!-- include file -->
 {% include 'includes/post.html' with post=post %}
-
 {% endblock %}
