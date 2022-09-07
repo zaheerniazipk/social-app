@@ -2,7 +2,7 @@
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Post
+from feed.models import Post
 
 
 # Create your views here.
@@ -28,3 +28,16 @@ class CreateNewPost(LoginRequiredMixin, CreateView):
     model = Post
     template_name = 'create.html'
     fields = ['text']
+
+    # How to tackle Integrity Error
+    success_url = '/'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.request = request
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.author = self.request.user
+        obj.save()
+        return super().form_valid(form)
