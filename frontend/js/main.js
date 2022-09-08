@@ -33,4 +33,56 @@ $.ajaxSetup({
 $(document).on("click", ".js-toggle-modal", function (event) {
     event.preventDefault()
     $(".js-modal").toggleClass("hidden")
-})
+});
+
+
+// AJAX jQuery code for Creating new post dynamically
+$(document).on('click', '.js-submit', function (event) {
+    event.preventDefault();
+    console.log('submit working!');
+
+    const $textarea = $('.js-post-text');
+    const text = $('.js-post-text').val().trim();
+    const $btn = $(this);
+
+    if (!text) {
+        return false
+    }
+    else {
+        // When text is submitted, model will be closed
+        $(".js-modal").addClass("hidden");
+        // Return nox Text in the text Box for next attempt to submit
+        $('.js-post-text').val('')
+
+        // send to database
+        $btn.prop('disabled', true).text('posting!')
+        // jQuery ajax() Method
+        $.ajax({
+            type: 'POST',
+            // Specifies the URL to send the request to
+            url: $textarea.data('post-url'),
+            // Specifies data to be sent to the server
+            data: {
+                text: text,
+            },
+
+            // A function to be run when the request succeeds
+            success: (dataHtml) => {
+                $(".js-modal").addClass("hidden");
+                $('#posts-container').prepend(dataHtml);
+                $btn.prop('disabled', false).text('New Post');
+                $('.js-post-text').val();
+
+            },
+
+            // A function to run if the request fails.
+            error: (error) => {
+                console.warn(error);
+                $btn.prop('disabled', false).text('Error');
+            }
+
+        });
+
+
+    }
+});
