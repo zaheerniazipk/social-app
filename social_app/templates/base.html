@@ -15,11 +15,11 @@
 
 <body>
 
-    <!-- component is from https://tailwindcomponents.com/component/sidebar-navigation -->
+    <!-- Tailwind Sidebar Navigation Component from https://tailwindcomponents.com/component/sidebar-navigation -->
     <div class="min-h-screen flex flex-row bg-gray-100">
         <div class="flex flex-col w-56 bg-white rounded-r-3xl overflow-hidden">
             <div class="flex items-center justify-center h-20 shadow-md">
-                <h1 class="text-3xl uppercase text-indigo-500">TIL</h1>
+                <h1 class="text-3xl uppercase text-indigo-500">Social-App</h1>
             </div>
             <ul class="flex flex-col py-4">
                 <li>
@@ -30,6 +30,7 @@
                         <span class="text-sm font-medium">Home</span>
                     </a>
                 </li>
+
                 {% if request.user.is_authenticated %}
                 <li>
                     <a href="{% url 'feed:new_post' %}"
@@ -67,7 +68,8 @@
 
 
         {% if request.user.is_authenticated %}
-        <!-- Tailwind Model with button component -->
+        <!-- Tailwind Component Model with button -->
+        <!-- component from https://tailwindcomponents.com/component/a-minimal-simple-modal-that-still-looks-good-->
         <div
             class="flex items-center justify-center fixed left-0 bottom-0 w-full h-full bg-gray-800 bg-opacity-75 hidden js-modal">
             <div class="bg-white rounded-lg w-1/2">
@@ -100,12 +102,16 @@
         </div>
         {% endif %}
     </div>
+    <!-- End of Sidebar Navigation -->
 
 
+    <!-- JS Scripts -->
+    <!-- jQuery CDN Link -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
         integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
         crossorigin="anonymous"></script>
 
+    <!-- Local Script -->
     <script src="{% static 'js/main.js' %}"></script>
 
 

@@ -29,8 +29,8 @@ $.ajaxSetup({
     },
 });
 
-// JS Toggle model for new Post
-$(document).on("click", ".js-toggle-modal", function (e) {
-    e.preventDefault()
+// JS Toggle model Event for new Post
+$(document).on("click", ".js-toggle-modal", function (event) {
+    event.preventDefault()
     $(".js-modal").toggleClass("hidden")
 })
