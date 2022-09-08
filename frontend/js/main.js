@@ -4,6 +4,7 @@ $.ajaxSetup({
         function getCookie(name) {
             let cookieValue = null;
 
+
             if (document.cookie && document.cookie !== '') {
                 const cookies = document.cookie.split(';');
 
@@ -17,6 +18,7 @@ $.ajaxSetup({
                     }
                 }
             }
+
             return cookieValue;
         }
 
@@ -26,3 +28,9 @@ $.ajaxSetup({
         }
     },
 });
+
+// JS Toggle model for new Post
+$(document).on("click", ".js-toggle-modal", function (e) {
+    e.preventDefault()
+    $(".js-modal").toggleClass("hidden")
+})
