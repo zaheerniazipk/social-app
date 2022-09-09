@@ -18,16 +18,30 @@ class ProfileDetailView(DetailView):
     slug_field = "username"
     slug_url_kwarg = "username"
 
+    def dispatch(self, request, *args, **kwargs):
+        self.request = request
+        return super().dispatch(request, *args, **kwargs)
+
     # get total posts and followers
     def get_context_data(self, **kwargs):
         user = self.get_object()
         context = super().get_context_data(**kwargs)
         context['total_posts'] = Post.objects.filter(author=user).count()
+        # Total Followers Context
+        if self.request.user.is_authenticated:
+            context['you_follow'] = Follower.objects.filter(
+                following=user, followed_by=self.request.user).exists()
+
+            context['total_followers'] = Follower.objects.filter(
+                following=user).count()
+
+            context['total_following'] = Follower.objects.filter(
+                followed_by=user).count()
+
         return context
 
 
 # Intentionally simple parent class for all views is View CCBV
-# Follow or Un-follow interactivity
 # Follow or Un-follow interactivity
 class FollowView(LoginRequiredMixin, View):
     http_method_names = ["post"]
