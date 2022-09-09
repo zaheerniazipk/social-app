@@ -65,7 +65,6 @@ $(document).on('click', '.js-submit', function (event) {
             data: {
                 text: text,
             },
-
             // A function to be run when the request succeeds
             success: (dataHtml) => {
                 $(".js-modal").addClass("hidden");
@@ -74,15 +73,42 @@ $(document).on('click', '.js-submit', function (event) {
                 $('.js-post-text').val();
 
             },
-
             // A function to run if the request fails.
             error: (error) => {
                 console.warn(error);
                 $btn.prop('disabled', false).text('Error');
             }
-
         });
-
-
     }
 });
+
+
+// Follow Button Interactivity
+$(document).on("click", ".js-follow", function (event) {
+    event.preventDefault();
+    const action = $(this).attr("data-action")
+
+    $.ajax({
+        type: 'POST',
+        url: $(this).data("url"),
+        data: {
+            action: action,
+            username: $(this).data("username"),
+        },
+        success: (data) => {
+            $(".js-follow-text").text(data.wording)
+            if (action == "follow") {
+                // Change wording to unfollow
+                console.log("DEBUG", "unfollow")
+                $(this).attr("data-action", "unfollow")
+            } else {
+                // The opposite
+                console.log("DEBUG", "follow")
+                $(this).attr("data-action", "follow")
+            }
+        },
+        error: (error) => {
+            console.warn(error)
+        }
+    });
+})
